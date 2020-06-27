@@ -258,7 +258,7 @@ class AABB {
       }
 
       // Pull the max down
-      tmax = Math.min(tmax, t2);
+      tmax = Math.min<double>(tmax, t2);
 
       if (tmin > tmax) {
         argPool.pushVec2(4);
@@ -295,7 +295,7 @@ class AABB {
       }
 
       // Pull the max down
-      tmax = Math.min(tmax, t2);
+      tmax = Math.min<double>(tmax, t2);
 
       if (tmin > tmax) {
         argPool.pushVec2(4);

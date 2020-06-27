@@ -52,9 +52,7 @@ class PsTriad {
   int indexA = 0, indexB = 0, indexC = 0;
   int flags = 0;
   double strength = 0.0;
-  final Vector2 pa = Vector2.zero(),
-      pb = Vector2.zero(),
-      pc = Vector2.zero();
+  final Vector2 pa = Vector2.zero(), pb = Vector2.zero(), pc = Vector2.zero();
   double ka = 0.0, kb = 0.0, kc = 0.0, s = 0.0;
 }
 
@@ -308,7 +306,7 @@ class JoinParticleGroupsCallback implements VoronoiDiagramCallback {
           triad.indexB = b;
           triad.indexC = c;
           triad.flags = af | bf | cf;
-          triad.strength = Math.min(groupA._strength, groupB._strength);
+          triad.strength = Math.min<double>(groupA._strength, groupB._strength);
           final double midPointx = 1.0 / 3.0 * (pa.x + pb.x + pc.x);
           final double midPointy = 1.0 / 3.0 * (pa.y + pb.y + pc.y);
           triad.pa.x = pa.x - midPointx;
@@ -864,7 +862,7 @@ class ParticleSystem {
           pair.indexA = a;
           pair.indexB = b;
           pair.flags = contact.flags;
-          pair.strength = Math.min(groupA._strength, groupB._strength);
+          pair.strength = Math.min<double>(groupA._strength, groupB._strength);
           pair.distance = MathUtils.distance(
               positionBuffer.data[a], positionBuffer.data[b]);
           pairCount++;
@@ -1238,9 +1236,9 @@ class ParticleSystem {
     for (int i = 0; i < count; i++) {
       double w = accumulationBuffer[i];
       double h = pressurePerWeight *
-          Math.max(
+          Math.max<double>(
               0.0,
-              Math.min(w, Settings.maxParticleWeight) -
+              Math.min<double>(w, Settings.maxParticleWeight) -
                   Settings.minParticleWeight);
       accumulationBuffer[i] = h;
     }
@@ -1807,8 +1805,8 @@ class ParticleSystem {
       for (int i = group._firstIndex; i < group._lastIndex; i++) {
         j = newIndices[i];
         if (j >= 0) {
-          firstIndex = Math.min(firstIndex, j);
-          lastIndex = Math.max(lastIndex, j + 1);
+          firstIndex = Math.min<int>(firstIndex, j);
+          lastIndex = Math.max<int>(lastIndex, j + 1);
         } else {
           modified = true;
         }
@@ -2144,13 +2142,13 @@ class ParticleSystem {
     int firstProxy = _lowerBound(
         proxyBuffer,
         proxyCount,
-        computeTag(inverseDiameter * Math.min(point1.x, point2.x) - 1,
-            inverseDiameter * Math.min(point1.y, point2.y) - 1));
+        computeTag(inverseDiameter * Math.min<double>(point1.x, point2.x) - 1,
+            inverseDiameter * Math.min<double>(point1.y, point2.y) - 1));
     int lastProxy = _upperBound(
         proxyBuffer,
         proxyCount,
-        computeTag(inverseDiameter * Math.max(point1.x, point2.x) + 1,
-            inverseDiameter * Math.max(point1.y, point2.y) + 1));
+        computeTag(inverseDiameter * Math.max<double>(point1.x, point2.x) + 1,
+            inverseDiameter * Math.max<double>(point1.y, point2.y) + 1));
     double fraction = 1.0;
     // solving the following equation:
     // ((1-t)*point1+t*point2-position)^2=diameter^2
@@ -2188,7 +2186,7 @@ class ParticleSystem {
         point.x = point1.x + t * vx;
         point.y = point1.y + t * vy;
         double f = callback.reportParticle(i, point, n, t);
-        fraction = Math.min(fraction, f);
+        fraction = Math.min<double>(fraction, f);
         if (fraction <= 0) {
           break;
         }

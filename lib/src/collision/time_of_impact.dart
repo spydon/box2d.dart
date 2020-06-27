@@ -116,8 +116,8 @@ class TimeOfImpact {
 
     double totalRadius = proxyA.radius + proxyB.radius;
     // djm: whats with all these constants?
-    double target =
-        Math.max(Settings.linearSlop, totalRadius - 3.0 * Settings.linearSlop);
+    double target = Math.max<double>(
+        Settings.linearSlop, totalRadius - 3.0 * Settings.linearSlop);
     double tolerance = 0.25 * Settings.linearSlop;
 
     assert(target > tolerance);
@@ -253,7 +253,7 @@ class TimeOfImpact {
           }
         }
 
-        toiMaxRootIters = Math.max(toiMaxRootIters, rootIterCount);
+        toiMaxRootIters = Math.max<int>(toiMaxRootIters, rootIterCount);
 
         ++pushBackIter;
 
@@ -281,7 +281,7 @@ class TimeOfImpact {
     }
 
     // System.out.printf("final sweeps: %f, %f, %f; %f, %f, %f", input.s)
-    toiMaxIters = Math.max(toiMaxIters, iter);
+    toiMaxIters = Math.max<int>(toiMaxIters, iter);
   }
 } // Class TimeOfImpact.
 

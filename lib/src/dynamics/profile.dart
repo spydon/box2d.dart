@@ -39,8 +39,8 @@ class ProfileEntry {
   void record(double value) {
     longAvg = longAvg * (1 - _LONG_FRACTION) + value * _LONG_FRACTION;
     shortAvg = shortAvg * (1 - _SHORT_FRACTION) + value * _SHORT_FRACTION;
-    min = Math.min(value, min);
-    max = Math.max(value, max);
+    min = Math.min<double>(value, min);
+    max = Math.max<double>(value, max);
   }
 
   void startAccum() {

@@ -36,7 +36,7 @@ double distance(Vector2 v1, Vector2 v2) => v1.distanceTo(v2);
 
 /** Returns the closest value to 'a' that is in between 'low' and 'high' */
 double clampDouble(final double a, final double low, final double high) =>
-    Math.max(low, Math.min(a, high));
+    Math.max<double>(low, Math.min<double>(a, high));
 
 Vector2 clampVec2(final Vector2 a, final Vector2 low, final Vector2 high) {
   final Vector2 min = Vector2.zero();

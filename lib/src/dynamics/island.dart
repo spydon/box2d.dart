@@ -388,7 +388,7 @@ class Island {
           minSleepTime = 0.0;
         } else {
           b._sleepTime += h;
-          minSleepTime = Math.min(minSleepTime, b._sleepTime);
+          minSleepTime = Math.min<double>(minSleepTime, b._sleepTime);
         }
       }
 

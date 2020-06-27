@@ -110,7 +110,7 @@ class PolygonShape extends Shape {
       return;
     }
 
-    int n = Math.min(num, Settings.maxPolygonVertices);
+    int n = Math.min<int>(num, Settings.maxPolygonVertices);
 
     // Perform welding and copy vertices into local buffer.
     List<Vector2> ps = (vecPool != null)
